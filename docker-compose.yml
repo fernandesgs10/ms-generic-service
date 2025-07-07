@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+  app:
+    container_name: desafio-backend
+    image: desafio-backend:latest
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgresqldb
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresqldb:5432/db-desafio-backend
+      - SPRING_DATASOURCE_USERNAME=desafio
+      - SPRING_DATASOURCE_PASSWORD=desafio
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  postgresqldb:
+    image: 'postgres:13.1-alpine'
+    container_name: db-desafio-backend
+    environment:
+      - POSTGRES_DB=db-desafio-backend
+      - POSTGRES_USER=desafio
+      - POSTGRES_PASSWORD=desafio
+    ports:
+      - 5432:5432

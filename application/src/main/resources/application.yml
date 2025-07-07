@@ -1,0 +1,38 @@
+application:
+  name: ms-desafio-backend
+
+main:
+  allow-bean-definition-overriding: true
+
+banner:
+  location: classpath:/banner.txt
+
+server:
+  port: 8080
+  servlet:
+    context-path: /desafio-backend
+
+logging:
+  level:
+    org.springframework.security: TRACE
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db-desafio-backend
+    username: desafio
+    password: desafio
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migrations
+
+jwt:
+  secret: 3cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b
+  expiration: 3600000
+
