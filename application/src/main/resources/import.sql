@@ -1,0 +1,2 @@
+INSERT INTO tb_account_payment (due_date, payment_date, amount, description, status, nm_created, dt_created, nm_edited, dt_updated, version) VALUES (DATE '2025-08-01', DATE '2025-08-03', 1500, 'Pagamento de fornecedor', TRUE, 'Sistema', CURRENT_TIMESTAMP, NULL, CURRENT_TIMESTAMP, 0);
+INSERT INTO tb_account_payment (due_date, payment_date, amount, description, status, nm_created, dt_created, nm_edited, dt_updated, version) VALUES (DATE '2025-08-01', DATE '2025-08-03', 300, 'Pagamento de fornecedor', TRUE, 'Sistema', CURRENT_TIMESTAMP, NULL, CURRENT_TIMESTAMP, 0);

@@ -1,0 +1,38 @@
+application:
+  name: ms-generic-service
+
+main:
+  allow-bean-definition-overriding: true
+
+banner:
+  location: classpath:/banner.txt
+
+server:
+  port: 8080
+  servlet:
+    context-path: /ms-generic-service
+
+logging:
+  level:
+    org.springframework.security: TRACE
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:generic-db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+
+  spring:
+    jpa:
+      hibernate:
+        ddl-auto: update
+      database-platform: org.hibernate.dialect.H2Dialect
+      properties:
+        jakarta.persistence.sql-load-script-source: classpath:import.sql
+
+    h2:
+    console:
+      enabled: true
+      path: /h2-console
+

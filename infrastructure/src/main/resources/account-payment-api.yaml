@@ -1,0 +1,109 @@
+openapi: 3.0.3
+info:
+  title: Account Payment API
+  version: "1.0.0"
+  description: API for managing account payments with pagination parameters.
+
+servers:
+  - url: http://localhost:8080/ms-generic-service
+
+paths:
+  /account-payments:
+    get:
+      summary: Get account payments with pagination parameters
+      parameters:
+        - name: page
+          in: query
+          description: Page number (zero-based)
+          required: false
+          schema:
+            type: integer
+            default: 0
+        - name: size
+          in: query
+          description: Page size
+          required: false
+          schema:
+            type: integer
+            default: 10
+        - name: sortBy
+          in: query
+          description: sortBy criteria (e.g. amount,asc)
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Account payments response (generic object)
+          content:
+            application/json:
+              schema:
+                type: object
+
+    post:
+      summary: Create a new account payment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountPaymentRequest'
+      responses:
+        '201':
+          description: Created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountPaymentResponse'
+
+components:
+  schemas:
+    AccountPaymentRequest:
+      type: object
+      required:
+        - amount
+      properties:
+        dueDate:
+          type: string
+          format: date
+        paymentDate:
+          type: string
+          format: date
+        amount:
+          type: number
+          format: double
+        description:
+          type: string
+        status:
+          type: boolean
+
+    AccountPaymentResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        dueDateTest:
+          type: string
+          format: date
+        paymentDate:
+          type: string
+          format: date
+        amount:
+          type: number
+          format: double
+        description:
+          type: string
+        status:
+          type: boolean
+        nmCreated:
+          type: string
+        dtCreated:
+          type: string
+          format: date-time
+        nmEdited:
+          type: string
+        dtUpdated:
+          type: string
+          format: date-time
+        version:
+          type: integer

@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+  app:
+    container_name: ms-generic-service
+    image: generic-service-backend:latest
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgresqldb
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresqldb:5432/db-generic-service-backend
+      - SPRING_DATASOURCE_USERNAME=generic
+      - SPRING_DATASOURCE_PASSWORD=generic
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  postgresqldb:
+    image: 'postgres:13.1-alpine'
+    container_name: db-generic-service-backend
+    environment:
+      - POSTGRES_DB=db-generic-service-backend
+      - POSTGRES_USER=generic
+      - POSTGRES_PASSWORD=generic
+    ports:
+      - 5432:5432
