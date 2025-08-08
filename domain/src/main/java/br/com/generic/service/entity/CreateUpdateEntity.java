@@ -9,6 +9,8 @@ import jakarta.persistence.Version;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Data
@@ -16,6 +18,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class CreateUpdateEntity {
 
+    @CreatedBy
     @Column(name = "nm_created", nullable = false, updatable = false)
     private String nmCreated;
 
@@ -23,6 +26,7 @@ public abstract class CreateUpdateEntity {
     @Temporal(TemporalType.TIMESTAMP)
     public java.util.Date dtCreated;
 
+    @LastModifiedBy
     @Column(name = "nm_edited")
     private String nmEdited;
 

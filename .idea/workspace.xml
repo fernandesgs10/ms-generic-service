@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="14cc580c-e5e3-4662-892b-8c0d785b293c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/br/com/generic/service/config/AuditConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/br/com/generic/service/controller/CreditController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/br/com/generic/service/infrastructure/service/CreditServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/br/com/generic/service/infrastructure/usecase/credit/CreditPersonalUseCaseImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/br/com/generic/service/infrastructure/usecase/credit/EligibilityUseCaseImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/br/com/generic/service/infrastructure/usecase/credit/SimulationUseCaseImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/java/br/com/generic/service/entity/CreditRatePolicyEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/java/br/com/generic/service/entity/SimulationEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/java/br/com/generic/service/entity/SimulationItensEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/java/br/com/generic/service/repository/CreditRatePolicyRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/java/br/com/generic/service/repository/SimulationItensRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/domain/src/main/java/br/com/generic/service/repository/SimulationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/java/br/com/generic/service/config/NotEligibleException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/java/br/com/generic/service/mapper/SimulationItensMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/java/br/com/generic/service/service/CreditService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/java/br/com/generic/service/service/EligibilityService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/java/br/com/generic/service/usecases/credit/CreditPersonalUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/java/br/com/generic/service/usecases/credit/EligibilityUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/java/br/com/generic/service/usecases/credit/SimulationUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/application/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/br/com/generic/service/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/br/com/generic/service/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/br/com/generic/service/config/HandlerExceptionConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/br/com/generic/service/config/HandlerExceptionConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/resources/import.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/java/br/com/generic/service/common/GatewayException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/java/br/com/generic/service/common/HandleException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/java/br/com/generic/service/common/MessageHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/domain/src/main/java/br/com/generic/service/entity/CreateUpdateEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/java/br/com/generic/service/entity/CreateUpdateEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/resources/account-payment-api.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/resources/account-payment-api.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2zPSnhRSyQmqE6QenWYIZlG8HI6" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.MainApplication.executor": "Debug",
+    "Maven.ms-generic-service [clean,install].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/FernandesGarciadaSil/projects/ms-generic-service/infrastructure/src/main/java/br/com/generic/service/mapper",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "MavenSettings"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\FernandesGarciadaSil\projects\ms-generic-service\infrastructure\src\main\java\br\com\generic\service\mapper" />
+      <recent name="C:\Users\FernandesGarciadaSil\projects\ms-generic-service\infrastructure" />
+      <recent name="C:\Users\FernandesGarciadaSil\projects\ms-desafio-backend\application\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\FernandesGarciadaSil\projects\ms-generic-service\infrastructure\src\main\resources" />
+      <recent name="C:\Users\FernandesGarciadaSil\projects\ms-generic-service\application\src\main\resources" />
+      <recent name="C:\Users\FernandesGarciadaSil\projects\ms-generic-service\infrastructure" />
+      <recent name="C:\Users\FernandesGarciadaSil\projects\ms-generic-service\domain" />
+      <recent name="C:\Users\FernandesGarciadaSil\projects\ms-generic-service\application" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="br.com.generic.service" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="br.com.generic.service.repository" />
+      <recent name="br.com.generic.service.entity" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean install" />
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="br.com.generic.service.MainApplication" />
+      <module name="application" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="br.com.generic.service.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MainApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="14cc580c-e5e3-4662-892b-8c0d785b293c" name="Changes" comment="" />
+      <created>1751631384841</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1751631384841</updated>
+    </task>
+    <servers />
+  </component>
+</project>

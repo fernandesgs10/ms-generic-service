@@ -1,109 +1,346 @@
 openapi: 3.0.3
 info:
-  title: Account Payment API
+  title: Personal Credit Request API
   version: "1.0.0"
-  description: API for managing account payments with pagination parameters.
+  description: |
+    API for Personal Credit Request following DDD principles.
+    Includes eligibility check, credit simulation, proposal creation and formalization.
 
 servers:
-  - url: http://localhost:8080/ms-generic-service
+  - url: http://localhost:8080/api
 
 paths:
-  /account-payments:
+  /credits/eligibility:
+    post:
+      summary: Check client's eligibility for credit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EligibilityRequest'
+      responses:
+        '200':
+          description: Eligibility result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EligibilityResult'
+
+  /credits/simulations:
     get:
-      summary: Get account payments with pagination parameters
+      summary: Simulate credit options based on client data
       parameters:
         - name: page
           in: query
-          description: Page number (zero-based)
+          description: page number
+          required: false
+          schema:
+            type: integer
+        - name: size
+          in: query
+          description: size number
+          required: false
+          schema:
+            type: integer
+        - name: sortBy
+          in: query
+          description: sort number
+          required: false
+          schema:
+            type: string
+        - name: cpf
+          in: query
+          description: cpf
+          schema:
+            type: string
+        - name: income
+          in: query
+          description: income
+          schema:
+            type: number
+            format: double
+        - name: requestedAmount
+          in: query
+          description: requestedAmount
+          schema:
+            type: number
+            format: double
+
+
+      responses:
+        '200':
+          description: List of simulation options
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /credits/proposals:
+    post:
+      summary: Create a credit proposal based on chosen simulation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProposalRequest'
+      responses:
+        '201':
+          description: Proposal created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProposalResponse'
+
+    get:
+      summary: List all credit proposals
+      parameters:
+        - name: page
+          in: query
           required: false
           schema:
             type: integer
             default: 0
         - name: size
           in: query
-          description: Page size
           required: false
           schema:
             type: integer
             default: 10
         - name: sortBy
           in: query
-          description: sortBy criteria (e.g. amount,asc)
           required: false
+          schema:
+            type: string
+            example: "createdAt,desc"
+      responses:
+        '200':
+          description: List of credit proposals
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProposalResponse'
+
+  /credits/proposals/{proposalId}:
+    get:
+      summary: Get a credit proposal by ID
+      parameters:
+        - name: proposalId
+          in: path
+          required: true
           schema:
             type: string
       responses:
         '200':
-          description: Account payments response (generic object)
+          description: Proposal details
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/ProposalResponse'
+        '404':
+          description: Proposal not found
 
+  /credits/proposals/{proposalId}/formalize:
     post:
-      summary: Create a new account payment
+      summary: Formalize a credit proposal
+      parameters:
+        - name: proposalId
+          in: path
+          required: true
+          schema:
+            type: string
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AccountPaymentRequest'
+              $ref: '#/components/schemas/FormalizationRequest'
       responses:
-        '201':
-          description: Created successfully
+        '200':
+          description: Proposal formalized successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AccountPaymentResponse'
+                $ref: '#/components/schemas/ProposalResponse'
+        '400':
+          description: Proposal cannot be formalized in current state
 
 components:
   schemas:
-    AccountPaymentRequest:
+    EligibilityRequest:
       type: object
       required:
-        - amount
+        - cpf
+        - monthlyIncome
       properties:
-        dueDate:
+        cpf:
           type: string
-          format: date
-        paymentDate:
+          example: "12345678900"
+        monthlyIncome:
+          type: number
+          format: double
+          example: 5000.00
+
+    EligibilityResult:
+      type: object
+      properties:
+        eligible:
+          type: boolean
+          example: true
+        reasons:
+          type: array
+          items:
+            type: string
+          example: []
+
+    SimulationRequest:
+      type: object
+      required:
+        - cpf
+        - income
+        - requestedAmount
+        - score
+      properties:
+        cpf:
           type: string
-          format: date
+          example: "12345678900"
+        income:
+          type: number
+          format: double
+          example: 6000.00
+        requestedAmount:
+          type: number
+          format: double
+          example: 10000.00
+        score:
+          type: integer
+          example: 700
+          description: "Credit score of the client"
+
+    SimulationResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "abc123"
+        termMonths:
+          type: integer
+          example: 24
+        monthlyInstallment:
+          type: number
+          format: double
+          example: 489.75
+        interestRatePercent:
+          type: number
+          format: double
+          example: 2.5
+        iof:
+          type: number
+          format: double
+          example: 38.00
+          description: "IOF tax amount"
+        tac:
+          type: number
+          format: double
+          example: 150.00
+          description: "Taxa de abertura de crédito (TAC)"
+        totalPayable:
+          type: number
+          format: double
+          example: 12000.00
+          description: "Total a pagar (valor total do empréstimo incluindo taxas e juros)"
+
+    ProposalRequest:
+      type: object
+      required:
+        - cpf
+        - amount
+        - termMonths
+        - interestRatePercent
+      properties:
+        cpf:
+          type: string
+          example: "12345678900"
         amount:
           type: number
           format: double
-        description:
-          type: string
-        status:
-          type: boolean
+          example: 10000.00
+        termMonths:
+          type: integer
+          example: 24
+        interestRatePercent:
+          type: number
+          format: double
+          example: 2.5
 
-    AccountPaymentResponse:
+    ProposalResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "abc123"
+        status:
+          type: string
+          enum: [UNDER_REVIEW, FORMALIZED, REJECTED]
+        amount:
+          type: number
+          format: double
+          example: 10000.00
+        termMonths:
+          type: integer
+          example: 24
+        interestRatePercent:
+          type: number
+          format: double
+          example: 2.5
+        cpf:
+          type: string
+          example: "12345678900"
+
+    CreditRatePolicyResponse:
       type: object
       properties:
         id:
           type: integer
-        dueDateTest:
-          type: string
-          format: date
-        paymentDate:
-          type: string
-          format: date
-        amount:
+          example: 1
+        minIncome:
           type: number
           format: double
-        description:
-          type: string
-        status:
-          type: boolean
-        nmCreated:
-          type: string
-        dtCreated:
-          type: string
-          format: date-time
-        nmEdited:
-          type: string
-        dtUpdated:
-          type: string
-          format: date-time
-        version:
+          example: 2000.00
+        maxIncome:
+          type: number
+          format: double
+          example: 10000.00
+        minScore:
           type: integer
+          example: 300
+        maxScore:
+          type: integer
+          example: 800
+        interestRatePercent:
+          type: number
+          format: double
+          example: 2.5
+        openingFeePercent:
+          type: number
+          format: double
+          example: 1.5
+        iofPercent:
+          type: number
+          format: double
+          example: 0.38
+        maxTermInMonths:
+          type: integer
+          example: 36
+
+    FormalizationRequest:
+      type: object
+      required:
+        - signedDocuments
+      properties:
+        signedDocuments:
+          type: boolean
+          example: true

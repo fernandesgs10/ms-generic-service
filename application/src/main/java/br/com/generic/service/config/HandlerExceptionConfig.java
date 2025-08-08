@@ -55,6 +55,13 @@ public class HandlerExceptionConfig {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorDto);
     }
 
+    @ExceptionHandler(NotEligibleException.class)
+    public ResponseEntity<Object> handleNotEligibleException(NotEligibleException ex, WebRequest request) {
+        ErrorDto errorDto = createErrorDto(HttpStatus.FORBIDDEN, ex, request);
+        log.warn("Not eligible: {}", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(errorDto);
+    }
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Object> handleIllegalArgumentException(IllegalArgumentException exception, WebRequest request) {
         ErrorDto errorDto = createErrorDto(HttpStatus.BAD_REQUEST, exception, request);

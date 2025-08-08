@@ -156,8 +156,8 @@
                         <configuration>
                             <inputSpec>${project.basedir}/src/main/resources/account-payment-api.yaml</inputSpec>
                             <generatorName>spring</generatorName>
-                            <apiPackage>br.com.generic.service.api</apiPackage>
-                            <modelPackage>br.com.generic.service.api</modelPackage>
+                            <apiPackage>br.com.generic.service.account</apiPackage>
+                            <modelPackage>br.com.generic.service.account</modelPackage>
                             <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
                             <configOptions>
                                 <interfaceOnly>true</interfaceOnly>
